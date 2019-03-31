@@ -53,7 +53,7 @@ The parser, based on a context-free grammar, will translate the input language i
         }
     }
     
-    
+   
 ### To compile
 > make compile
 
@@ -62,7 +62,7 @@ The parser, based on a context-free grammar, will translate the input language i
 
 > make execute < *INPUT FILE* > *OUTPUT FILE*
 
-**The output file should be in another folder !**
+:warning: The output file should be in another folder
 
-
+:warning: Jflex should be installed 
 
