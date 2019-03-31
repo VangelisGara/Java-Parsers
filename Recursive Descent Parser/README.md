@@ -4,8 +4,8 @@ Implementing a hand-written recursive descent parser and evaluator of a simple b
 
 ### The Grammar , LL(1)
 **\#**  **Production Rule** <br/><br/>
-1       &nbsp;&nbsp;&nbsp;goal -> expr <br/><br/>
-2       &nbsp;&nbsp;&nbsp;expr -> term expr2  
+1       &nbsp;&nbsp;&nbsp;goal -> expr
+2       &nbsp;&nbsp;&nbsp;expr -> term expr2
 3       &nbsp;&nbsp;&nbsp;expr2 -> ^ term expr2
 4       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;ε
 5       &nbsp;&nbsp;&nbsp;term -> factor term2
