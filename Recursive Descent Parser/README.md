@@ -13,7 +13,7 @@ Implementing a hand-written recursive descent parser and evaluator of a simple b
 7       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;ε <br/><br/>
 8       &nbsp;&nbsp;&nbsp;factor -> num <br/><br/>
 9       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | ( expr ) <br/><br/>
-10 &nbsp;&nbsp;&nbsp; num -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+10      &nbsp;&nbsp;&nbsp; num -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
 
 
 ### First+ Sets
