@@ -3,7 +3,7 @@
 Implementing a hand-written recursive descent parser and evaluator of a simple bitwise AND(&), XOR(^) calculator .
 
 ### The Grammar , LL(1)
-**\#**  **Production Rule** tl;dr
+**\#**  **Production Rule** <br/><br/>
 1       &nbsp;&nbsp;&nbsp;goal -> expr
 2       &nbsp;&nbsp;&nbsp;expr -> term expr2
 3       &nbsp;&nbsp;&nbsp;expr2 -> ^ term expr2
