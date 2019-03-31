@@ -6,10 +6,10 @@ Implementing a hand-written recursive descent parser and evaluator of a simple b
 **\#**  **Production Rule** <br/><br/>
 1       &nbsp;&nbsp;&nbsp;goal -> expr <br/><br/>
 2       &nbsp;&nbsp;&nbsp;expr -> term expr2 <br/><br/>
-3       &nbsp;&nbsp;&nbsp;expr2 ->  ^ &nbsp; term expr2 <br/><br/>
+3       &nbsp;&nbsp;&nbsp;expr2 -> &nbsp; ^ &nbsp; term expr2 <br/><br/>
 4       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;ε <br/><br/>
 5       &nbsp;&nbsp;&nbsp;term -> factor term2 <br/><br/>
-6       &nbsp;&nbsp;&nbsp;term2 ->  &  &nbsp; factor term2 <br/><br/>
+6       &nbsp;&nbsp;&nbsp;term2 -> &nbsp; &  &nbsp; factor term2 <br/><br/>
 7       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;ε <br/><br/>
 8       &nbsp;&nbsp;&nbsp;factor -> num <br/><br/>
 9       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | ( expr )
