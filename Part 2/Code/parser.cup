@@ -1,0 +1,106 @@
+/* ------------- Package and Import Specifications ------------- */
+import java_cup.runtime.*;
+
+/* ------------- Usercode Components ------------- */
+
+action code {: // First call of a function
+  int flag = 0;
+:}
+
+parser code {: // Connect this parser to a scanner
+    Scanner s;
+    Parser(Scanner s){ this.s=s; }
+:}
+
+scan with {: // Specify how to get next tokens
+  return s.next_token();
+:};
+
+/* ------------- Symbol Lists ------------- */
+
+// Terminals (tokens returned by the scanner).
+terminal PLUS, LPAREN, RPAREN, LBRACK, RBRACK, COMMA;
+terminal String STRING_LITERAL, IDENT, IF, ELSE, PREFIX, SUFFIX;
+
+//  Non terminals
+non terminal goal;
+non terminal String function_declarations,function_declaration;
+non terminal String function_calls,function_call;
+non terminal String arguments,argument,function_call_arg,function_body;
+non terminal String returns,element;
+non terminal String statement,expression;
+
+/* ------------- Precedence Declarations ------------- */
+
+/* ------------- The Grammar Rules ------------- */
+goal ::= {:
+            System.out.println("public class Main {\n");
+         :}
+         function_declarations function_calls
+         {:
+           System.out.println("}");
+         :}
+;
+function_declarations ::= function_declaration function_declarations
+                        | function_call
+;
+function_declaration ::= IDENT:id LPAREN arguments:args RPAREN LBRACK function_body:body RBRACK
+                         {:
+                           String[] result = args.split(",");
+                           String decl_args="";
+                           if( result[0] != "" ){
+                             for (int x=0; x<result.length; x++){
+                              decl_args = decl_args + "String " + result[x] + ",";
+                             }
+                             decl_args = decl_args.substring(0, decl_args.length() - 1);
+                           }
+                           System.out.print("\tpublic static String " + id + "(" + decl_args + "){\n\t\t" );
+                           System.out.println(body);
+                           System.out.println("\t}\n");
+                         :}
+;
+arguments ::= argument:arg COMMA arguments:temp_args {: RESULT = arg + "," + temp_args; :}
+            | argument:arg {: RESULT = arg; :}
+            | {: RESULT = ""; :}
+;
+argument ::= IDENT:id {: RESULT=id; :}
+           | STRING_LITERAL:string {: RESULT="\"" + string + "\""; :}
+           | function_call_arg:call {: RESULT=call; :}
+;
+function_call_arg ::= IDENT:id LPAREN arguments:args RPAREN {: RESULT = id + "(" + args + ")"; :}
+;
+function_body ::= returns:res {: RESULT= "return " + res + ";"; :}
+                | statement:stmt {: RESULT = stmt; :}
+                | function_call_arg:call {: RESULT="return " + call + ";"; :}
+;
+statement ::= IF LPAREN expression:expr RPAREN function_body:body1 ELSE function_body:body2
+              {:
+                body1 = body1.replace("return","");
+                body1 = body1.substring(0, body1.length() - 1);
+                body2 = body2.replace("return","");
+                RESULT = "return " + expr + " ? " + body1 + " : " + body2;
+              :}
+;
+expression ::= element:el1 PREFIX element:el2 {: RESULT= el2 + ".startsWith(" + el1 + ")"; :}
+             | element:el1 SUFFIX element:el2 {: RESULT= el2 + ".endsWith(" + el1 + ")"; :}
+
+;
+returns ::= element:el PLUS returns:temp_elems {: RESULT = el + " + " + temp_elems; :}
+          | element:el {: RESULT = el; :}
+
+;
+element ::= STRING_LITERAL:string {: RESULT="\""+string+"\""; :}
+          | IDENT:id {: RESULT=id; :}
+;
+function_calls ::= function_call function_calls
+                 | {: System.out.println("\t}"); :}
+;
+function_call ::= IDENT:id LPAREN arguments:args RPAREN
+                  {:
+                    if(flag == 0){
+                      System.out.println("\tpublic static void main(String[] args){");
+                      flag =1;
+                    }
+                    System.out.println("\t\tSystem.out.println(" + id + "(" + args + "));");
+                  :}
+;

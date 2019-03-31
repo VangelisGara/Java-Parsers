@@ -1,0 +1,15 @@
+name() {
+    if(fsf)
+    "John"
+}
+
+repeat(x) {
+    x + x
+}
+
+cond_repeat(c, x) {
+    repeat(x)
+}
+
+cond_repeat("yes", name())
+cond_repeat("no", "Jane")
