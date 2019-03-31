@@ -46,7 +46,7 @@ FOLLOW (num) = {  &,^,), EOF } <br/><br/>
 | Num    | #10   |    |    |    |    |     |
 
 ### To Compile & Execute
->javac SimpleCalculator.java
+>javac SimpleCalculator.java <br/><br/>
 >java SimpleCalculator
 
 ### Inputs
